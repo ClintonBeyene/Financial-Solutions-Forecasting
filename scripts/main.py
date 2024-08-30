@@ -158,6 +158,7 @@ class FinancialAnalyzer:
         weights = ef.max_sharpe()
         weights = dict(zip(tickers, weights.values()))
         return weights
+    
     def calculate_portfolio_performance(self, tickers, start_date, end_date):
         data = yf.download(tickers, start=start_date, end=end_date)['Close']
         mu = expected_returns.mean_historical_return(data)
