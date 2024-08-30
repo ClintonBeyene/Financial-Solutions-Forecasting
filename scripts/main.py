@@ -5,8 +5,13 @@ import talib as ta
 import numpy as np
 import plotly.express as px
 from pypfopt.efficient_frontier import EfficientFrontier
+<<<<<<< HEAD
 from pypfopt import risk_models, expected_returns
 import yfinance as yf
+=======
+from pypfopt import risk_models
+from pypfopt import expected_returns
+>>>>>>> e7092f880e0ccd3f974d1758fc933f2dbf6d8a80
 
 class DataPreprocessing:
     def __init__(self, file_paths=None):
@@ -96,6 +101,7 @@ class FinancialAnalyzer:
     def calculate_moving_average(self, data, window_size):
         return ta.SMA(data, timeperiod=window_size) 
 
+<<<<<<< HEAD
     def calculate_technical_indicators(self, data_dict):
         for label, data in data_dict.items():
             # Check if 'Close' column exists
@@ -150,6 +156,36 @@ class FinancialAnalyzer:
             fig = px.line(data, x=data.index, y=['MACD', 'MACD_Signal'], title=f'{label}: Moving Average Convergence Divergence (MACD)')
             fig.show()
 
+=======
+    def calculate_technical_indicators(self, data):
+        # Calculate various technical indicators
+        data['SMA'] = self.calculate_moving_average(data['Close'], 20)
+        data['RSI'] = ta.RSI(data['Close'], timeperiod=14)
+        data['EMA'] = ta.EMA(data['Close'], timeperiod=20)
+        macd, macd_signal, _ = ta.MACD(data['Close'])
+        data['MACD'] = macd
+        data['MACD_Signal'] = macd_signal
+        # Add more indicators as needed
+        return data
+
+    def plot_stock_data(self, data):
+        data.set_index('Date', inplace=True)
+        fig = px.line(data, x=data.index, y=['Close', 'SMA'], title='Stock Price with Moving Average')
+        fig.show()
+
+    def plot_rsi(self, data):
+        fig = px.line(data, x=data.index, y='RSI', title='Relative Strength Index (RSI)')
+        fig.show()
+
+    def plot_ema(self, data):
+        fig = px.line(data, x=data.index, y=['Close', 'EMA'], title='Stock Price with Exponential Moving Average')
+        fig.show()
+
+    def plot_macd(self, data):
+        fig = px.line(data, x=data.index, y=['MACD', 'MACD_Signal'], title='Moving Average Convergence Divergence (MACD)')
+        fig.show()
+    
+>>>>>>> e7092f880e0ccd3f974d1758fc933f2dbf6d8a80
     def calculate_portfolio_weights(self, tickers, start_date, end_date):
         data = yf.download(tickers, start=start_date, end=end_date)['Close']
         mu = expected_returns.mean_historical_return(data)
@@ -158,7 +194,11 @@ class FinancialAnalyzer:
         weights = ef.max_sharpe()
         weights = dict(zip(tickers, weights.values()))
         return weights
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e7092f880e0ccd3f974d1758fc933f2dbf6d8a80
     def calculate_portfolio_performance(self, tickers, start_date, end_date):
         data = yf.download(tickers, start=start_date, end=end_date)['Close']
         mu = expected_returns.mean_historical_return(data)
