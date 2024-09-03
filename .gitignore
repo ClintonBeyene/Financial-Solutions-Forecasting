@@ -1,17 +1,15 @@
 .nfsf-w1
 Row-Analysis-Ratings.csv
-<<<<<<< HEAD
 AAPL_historical_data.csv
-=======
-AAPL_historical_data.cav
->>>>>>> e7092f880e0ccd3f974d1758fc933f2dbf6d8a80
 AMZN_historical_data.csv
 GOOG_historical_data.csv
 META_historical_data.csv
 MSFT_historical_data.csv
 NVDA_historical_data.csv
-<<<<<<< HEAD
 TSLA_historical_data.csv
-=======
+[31
+See
+TA_Lib-0.4.29-cp312-cp312-win_amd64.whl
+filtered_data_frames.pkl
 TSLA_historical_data.csv
->>>>>>> e7092f880e0ccd3f974d1758fc933f2dbf6d8a80
+Decade_quatitative_analysis.ipynb
