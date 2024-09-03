@@ -7,6 +7,7 @@ import plotly.express as px
 from pypfopt.efficient_frontier import EfficientFrontier
 from pypfopt import risk_models, expected_returns
 import yfinance as yf
+from pypfopt import risk_models
 
 class DataPreprocessing:
     def __init__(self, file_paths=None):
@@ -158,7 +159,7 @@ class FinancialAnalyzer:
         weights = ef.max_sharpe()
         weights = dict(zip(tickers, weights.values()))
         return weights
-    
+
     def calculate_portfolio_performance(self, tickers, start_date, end_date):
         data = yf.download(tickers, start=start_date, end=end_date)['Close']
         mu = expected_returns.mean_historical_return(data)
